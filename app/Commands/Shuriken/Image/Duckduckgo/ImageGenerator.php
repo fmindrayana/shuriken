@@ -227,6 +227,10 @@ class ImageGenerator extends Command
         $images_json=$matches["images_json"];
         $images=json_decode($images_json,true);
 
+        foreach ($images as $key => $image) {
+            $images[$key]['url'] = $image['image'];
+        }
+
         return $images;
     }
 

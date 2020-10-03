@@ -21,6 +21,10 @@ trait HookTrait
     	$addons = File::allFiles(app_path('Addons'));
 
     	foreach ($addons as $addon) {
+            if(!Str::contains($addon->getRelativePathname(), '.php')){
+                continue;
+            }
+
     		$class_name = str_replace(['.php'], '', $addon->getRelativePathname());
 
     		$full_class_name = '\App\\Addons\\' . $class_name;

@@ -7,3 +7,4 @@
 /cache/*.php
 /app/Addons/*.php
 /app/Addons/*.txt
+*.zip

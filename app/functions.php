@@ -23,9 +23,7 @@ function blade()
 
 function slugify($string)
 {
-    $slugify = new Slugify();
-
-    return $slugify->slugify($string);
+    return mb_strtolower(str_replace(' ', '-', $string));
 }
 
 if (!function_exists('mb_ucwords'))
