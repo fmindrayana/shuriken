@@ -5,6 +5,8 @@ namespace App\Commands\Shuriken\Export\Hugo;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 use App\Post;
+use Illuminate\Support\Facades\File;
+
 
 class HugoExporter extends Command
 {
@@ -31,6 +33,7 @@ class HugoExporter extends Command
     public function handle()
     {
         $this->zip = new \PhpZip\ZipFile();
+        $this->export_path = base_path('exports/' . date('Y-m-d') . '/');
 
         $this->task('🍣 Exporting posts to hugo', function(){
 
@@ -46,7 +49,10 @@ class HugoExporter extends Command
                 });
             }
 
-            $this->zip->saveAsFile(base_path('exports/' . date('Y-m-d') . '/hugo-' . time() . '.zip'));
+            if(!File::isDirectory($this->export_path)){
+                File::makeDirectory($this->export_path, 0755, true);
+            }
+            $this->zip->saveAsFile($this->export_path . 'hugo-' . time() . '.zip');
             $this->zip->close();
         });
     }
