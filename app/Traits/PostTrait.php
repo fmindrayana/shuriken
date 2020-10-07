@@ -67,14 +67,18 @@ trait PostTrait
 
         return $keywords;
     }
+    
     public function massInsertKeywords($keywords, $post = null){
-        $posts_array = [];
 
-        foreach($keywords as $keyword){
-            $posts_array[] = is_null($post) ? ['keyword' => $keyword] : ['keyword' => $keyword, 'parent' => $post->keyword];
+        foreach (collect($keywords)->chunk(100) as $chunked) {
+            $posts_array = [];
+
+            foreach($chunked as $keyword){
+                $posts_array[] = is_null($post) ? ['keyword' => $keyword] : ['keyword' => $keyword, 'parent' => $post->keyword];
+            }
+
+            Post::insert($posts_array);
         }
-
-        Post::insert($posts_array);
     }
 
     public function getKeywords($options)
