@@ -109,7 +109,7 @@ $site_url = 'http://example.com/';
 							<wp:attachment_url><![CDATA[{{ $featured_image['image'] }}]]></wp:attachment_url>
 												<wp:postmeta>
 			<wp:meta_key><![CDATA[_wp_attached_file]]></wp:meta_key>
-			<wp:meta_value><![CDATA[$post->published_at->format('Y/m') }}/{{ slugify($post->keyword) }}.{{ GoogleImageGrabber::getFileType($featured_image['image']) }}]]></wp:meta_value>
+			<wp:meta_value><![CDATA[{{ $post->published_at->format('Y/m') }}/{{ slugify($post->keyword) }}.{{ GoogleImageGrabber::getFileType($featured_image['image']) }}]]></wp:meta_value>
 			</wp:postmeta>
 		</item>
 		
