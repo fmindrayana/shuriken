@@ -69,8 +69,9 @@ trait PostTrait
     }
     
     public function massInsertKeywords($keywords, $post = null){
+        $keywords = collect($keywords)->unique();
 
-        foreach (collect($keywords)->chunk(100) as $chunked) {
+        foreach ($keywords->chunk(100) as $chunked) {
             $posts_array = [];
 
             foreach($chunked as $keyword){
