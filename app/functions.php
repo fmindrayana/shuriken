@@ -16,9 +16,10 @@ function fake()
     return Factory::create();
 }
 
-function blade()
+function blade($base = null)
 {
-	return new Blade(base_path('templates'), base_path('cache'));
+    $base = (is_null($base)) ? base_path('templates') : $base;
+	return new Blade($base, base_path('cache'));
 }
 
 function slugify($string)
@@ -58,5 +59,5 @@ function convert_from_latin1_to_utf8_recursively($dat)
 }
 
 foreach (glob('Addons/*.php') as $addon) {
-	
+
 }
