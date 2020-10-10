@@ -21,7 +21,7 @@ trait PostTrait
     public function scrapeRelatedKeywords($post)
     {
         $keywords = $this->scrapeRelatedKeyword($post->keyword);
-            
+
         foreach ($keywords as $keyword) {
             Post::firstOrCreate(
                 ['keyword' => $keyword],
@@ -53,7 +53,7 @@ trait PostTrait
 
                 return count($new_keywords);
             });
-            
+
         } catch (\Exception $e) {
             $this->error('🌊 ' . $e->getMessage());
             if($tries > 3){
@@ -67,7 +67,7 @@ trait PostTrait
 
         return $keywords;
     }
-    
+
     public function massInsertKeywords($keywords, $post = null){
         $keywords = collect($keywords)->unique();
 
@@ -145,7 +145,7 @@ trait PostTrait
     public function generateTemplates($post)
     {
         foreach ($post->templates as $type => $template) {
-                    
+
             $this->generate($type, $template, $post);
         }
     }
@@ -199,10 +199,10 @@ trait PostTrait
         $options['clear'] = $this->choice('Clear previous posts data before running?', ['Yes', 'No'], 'Yes');
 
         $options['start_date'] = $this->ask('Start date (yyyy-mm-dd)', Carbon::now()->subYears(1)->format('Y-m-d'));
-        $options['start_date'] = empty($start_date) ? Carbon::now()->subYears(1) : Carbon::parse($start_date);
+        $options['start_date'] = empty($options['start_date']) ? Carbon::now()->subYears(1) : Carbon::parse($options['start_date']);
 
         $options['end_date'] = $this->ask('End date (yyyy-mm-dd)', Carbon::now()->format('Y-m-d'));
-        $options['end_date'] = empty($end_date) ? Carbon::now() : Carbon::parse($end_date);
+        $options['end_date'] = empty($options['end_date']) ? Carbon::now() : Carbon::parse($options['end_date']);
 
         $options['keyword_source'] = $this->choice('Please select keyword source', $this->source, 0);
         $options['category'] = $this->ask('Category', 'Uncategorized');
@@ -214,7 +214,7 @@ trait PostTrait
     {
         try{
             $sentences = [];
-            
+
 
             $this->task('🥢 Scraping sentences', function() use ($keyword, &$sentences){
                 $sentences = (new SentenceFinder)->findSentence($keyword);
