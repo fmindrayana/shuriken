@@ -71,14 +71,10 @@ trait PostTrait
     public function massInsertKeywords($keywords, $post = null){
         $keywords = collect($keywords)->unique();
 
-        foreach ($keywords->chunk(100) as $chunked) {
-            $posts_array = [];
+        foreach($keywords as $keyword){
+            $attributes = is_null($post) ? ['keyword' => $keyword] : ['keyword' => $keyword, 'parent' => $post->keyword];
 
-            foreach($chunked as $keyword){
-                $posts_array[] = is_null($post) ? ['keyword' => $keyword] : ['keyword' => $keyword, 'parent' => $post->keyword];
-            }
-
-            Post::insert($posts_array);
+            Post::firstOrCreate($attributes);
         }
     }
 
