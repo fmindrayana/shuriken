@@ -13,7 +13,7 @@
     <li><strong>Advertise</strong>&nbsp;: if you interested to advertising on our site.</li>
     <li><strong>Support</strong> : if you need our support.</li>
     </ul>
-    <p>And send all your inquiries to our official mail at contact@domainname</p>
+    <p>And send all your inquiries to our official mail at fmindrayana@gmail.com</p>
     <p align="justify">Don’t hesitate to contact us according your concerns and don’t worry, all of your comment are welcome. :) </p>
     <p align="justify">Thank you.</p>
 </article>

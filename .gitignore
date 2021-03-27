@@ -8,3 +8,6 @@
 /app/Addons/*.php
 /app/Addons/*.txt
 *.zip
+
+# Local Netlify folder
+.netlify

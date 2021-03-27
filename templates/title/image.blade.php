@@ -1,1 +1,1 @@
-[[Download|Get|View]|{{rand(10,50)}}+] {{ mb_ucwords($post->keyword) }} [Images|Pictures|Pics|Background|PNG|Gif]
+[[Inspiration|Best|Popular|Beautifull|Viral|Good|Update|Populer|Hot|Trends|Download|Get|View]|{{rand(10,99)}}+] {{ mb_ucwords($post->keyword) }} [Viral|Images|Pictures|Pics|Background|PNG|Gif]

@@ -175,11 +175,11 @@ trait PostTrait
     public function getDefaultOptions()
     {
         return [
-            'max_posts' => 1000,
+            'max_posts' => 3000,
             'category' => 'Uncategorized',
             'clear' => 'Yes',
             'start_date' => Carbon::now()->subYears(1),
-            'end_date' => Carbon::now(),
+            'end_date' => Carbon::now()->addYears(1),
             'keyword_source' => collect($this->source)->filter(function($item, $key){
                 return is_string($key);
             })->keys()->random()
@@ -190,15 +190,15 @@ trait PostTrait
     {
         $options = [];
 
-        $options['max_posts'] = (int)$this->ask('How many posts do you want?', 1000);
+        $options['max_posts'] = (int)$this->ask('How many posts do you want?', 3000);
 
         $options['clear'] = $this->choice('Clear previous posts data before running?', ['Yes', 'No'], 'Yes');
 
         $options['start_date'] = $this->ask('Start date (yyyy-mm-dd)', Carbon::now()->subYears(1)->format('Y-m-d'));
         $options['start_date'] = empty($options['start_date']) ? Carbon::now()->subYears(1) : Carbon::parse($options['start_date']);
 
-        $options['end_date'] = $this->ask('End date (yyyy-mm-dd)', Carbon::now()->format('Y-m-d'));
-        $options['end_date'] = empty($options['end_date']) ? Carbon::now() : Carbon::parse($options['end_date']);
+        $options['end_date'] = $this->ask('End date (yyyy-mm-dd)', Carbon::now()->addYears(1)->format('Y-m-d'));
+        $options['end_date'] = empty($options['end_date']) ? Carbon::now()->addYears(1) : Carbon::parse($options['end_date']);
 
         $options['keyword_source'] = $this->choice('Please select keyword source', $this->source, 0);
         $options['category'] = $this->ask('Category', 'Uncategorized');

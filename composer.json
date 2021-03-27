@@ -18,7 +18,7 @@
     "require": {
         "php": "^7.3",
         "buchin/badwords": "dev-master",
-        "buchin/google-image-grabber": "dev-master",
+        "buchin/google-image-grabber": "dev-master#8babb30ac30288443a2ccf50bf75be8ac77319f3",
         "buchin/google-suggest": "dev-master",
         "buchin/sentence-finder": "dev-master",
         "campo/random-user-agent": "^1.3",
